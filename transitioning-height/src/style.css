@@ -1,0 +1,82 @@
+/****** colors/typography ******/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+.wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  /*   flex-direction: column; */
+}
+
+.accordion {
+  min-width: 200px;
+  max-width: 500px;
+  width: clamp(150px, auto, 500px);
+  background-color: black;
+
+  font-family: system-ui;
+  color: white;
+
+  border-bottom: 5px solid limegreen;
+  cursor: pointer;
+}
+
+.accordion-title {
+  font-weight: 700;
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+
+.accordion-body {
+  padding-inline: 1rem;
+}
+
+/**********************************/
+
+/***** 1) height: not working *****/
+
+/*
+.accordion-body {
+  height: 0;
+  transition: 250ms height ease;
+}
+
+.accordion:hover .accordion-body {
+  height: auto;
+}
+*/
+
+/***** 2) max-height: it works, but requires fixed value *****/
+
+/*
+.accordion-body {
+  max-height: 0;
+  transition: 250ms max-height ease;
+}
+
+.accordion:hover .accordion-body {
+  max-height: 400px;
+}
+*/
+
+/***** 3) grid-template-rows: ✅ *****/
+
+.accordion-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: 1000ms grid-template-rows ease;
+}
+
+.accordion:hover .accordion-body {
+  grid-template-rows: 1fr;
+}
+
+.accordion-body > div {
+  overflow: hidden;
+}
